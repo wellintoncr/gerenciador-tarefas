@@ -16,7 +16,7 @@ import com.trabalho.gerenciador_tarefas.model.Tarefa;
 import com.trabalho.gerenciador_tarefas.repository.TarefaRepository;
 
 @RestController
-@RequestMapping({ "/contatos" })
+@RequestMapping({ "/tarefa" })
 public class TarefaController {
 	private TarefaRepository repository;
 
@@ -33,6 +33,22 @@ public class TarefaController {
 	public ResponseEntity<?> findById(@PathVariable long id) {
 		return repository.findById(id).map(record -> ResponseEntity.ok().body(record))
 				.orElse(ResponseEntity.notFound().build());
+	}
+
+	@PostMapping
+	public Tarefa create(@RequestBody Tarefa tarefa) {
+		return repository.save(tarefa);
+	}
+
+	@PutMapping(value = "/{id}")
+	public ResponseEntity<?> update(@PathVariable("id") long id, @RequestBody Tarefa tarefa) {
+		return repository.findById(id).map(record -> {
+			record.setNome(tarefa.getNome());
+			record.setNomeResponsavel(tarefa.getNomeResponsavel());
+			record.setDataEntrega(tarefa.getDataEntrega());
+			Tarefa updated = repository.save(record);
+			return ResponseEntity.ok().body(updated);
+		}).orElse(ResponseEntity.notFound().build());
 	}
 
 	@DeleteMapping(path = { "/{id}" })
