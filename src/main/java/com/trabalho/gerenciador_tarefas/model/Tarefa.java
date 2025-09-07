@@ -17,7 +17,7 @@ public class Tarefa {
 
 	private String nome;
 
-	private String nomeResponsavel;
+	private String responsavel;
 
 	@Column(name="dataEntrega", columnDefinition="DATE")
 	private LocalDate dataEntrega;
@@ -38,12 +38,12 @@ public class Tarefa {
 		this.nome = novoNome;
 	}
 	
-	public String getNomeResponsavel() {
-		return nomeResponsavel;
+	public String getResponsavel() {
+		return responsavel;
 	}
 	
-	public void setNomeResponsavel(String novoNomeResponsavel) {
-		this.nomeResponsavel = novoNomeResponsavel;
+	public void setResponsavel(String novoResponsavel) {
+		this.responsavel = novoResponsavel;
 	}
 
 	public LocalDate getDataEntrega() {

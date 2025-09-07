@@ -44,7 +44,7 @@ public class TarefaController {
 	public ResponseEntity<?> update(@PathVariable("id") long id, @RequestBody Tarefa tarefa) {
 		return repository.findById(id).map(record -> {
 			record.setNome(tarefa.getNome());
-			record.setNomeResponsavel(tarefa.getNomeResponsavel());
+			record.setResponsavel(tarefa.getResponsavel());
 			record.setDataEntrega(tarefa.getDataEntrega());
 			Tarefa updated = repository.save(record);
 			return ResponseEntity.ok().body(updated);
