@@ -1,7 +1,9 @@
 package com.trabalho.gerenciador_tarefas.model;
 
+import java.time.LocalDate;
 import java.util.Date;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -20,8 +22,8 @@ public class Tarefa {
 
 	private String nomeResponsavel;
 
-	@Temporal(TemporalType.DATE)
-	private Date dataEntrega;
+	@Column(name="dataEntrega", columnDefinition="DATE")
+	private LocalDate dataEntrega;
 	
 	public Long getId() {
 		return id;
@@ -47,11 +49,11 @@ public class Tarefa {
 		this.nomeResponsavel = novoNomeResponsavel;
 	}
 
-	public Date getDataEntrega() {
+	public LocalDate getDataEntrega() {
 		return dataEntrega;
 	}
 
-	public void setDataEntrega(Date novaDataEntrega) {
+	public void setDataEntrega(LocalDate novaDataEntrega) {
 		this.dataEntrega = novaDataEntrega;
 	}
 }
